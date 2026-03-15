@@ -47,7 +47,7 @@ const themeInitScript = `
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} - AI 驱动的智能招聘平台`,
+    default: `${siteConfig.name} - 智能招聘平台`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     locale: "zh_CN",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} - AI 驱动的智能招聘平台`,
+    title: `${siteConfig.name} - 智能招聘平台`,
     description: siteConfig.description,
   },
   icons: {
@@ -83,7 +83,8 @@ export default function RootLayout({
       <head>
         {/* Prevent flash of wrong theme */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
       </head>
       <body className="min-h-screen bg-background text-gray-900 antialiased dark:bg-dark-bg dark:text-slate-200">
         <ThemeProvider>

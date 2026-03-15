@@ -9,9 +9,10 @@ import { TrustSection } from "@/components/home/trust-section";
 import { TechSection } from "@/components/home/tech-section";
 import { ScenariosSection } from "@/components/home/scenarios-section";
 import { SecuritySection } from "@/components/home/security-section";
+import { CaseStudiesSection } from "@/components/home/case-studies-section";
 
 export const metadata: Metadata = generatePageMetadata({
-  title: `${siteConfig.name} - AI 驱动的智能招聘平台`,
+  title: `${siteConfig.name} - 智能招聘平台`,
   description: siteConfig.description,
   path: "/",
 });
@@ -46,8 +47,9 @@ export default function HomePage() {
       <StatsSection />
       <BEndValue />
       <CEndValue />
-      <TechSection />
+      <CaseStudiesSection />
       <ScenariosSection />
+      <TechSection />
       <SecuritySection />
       <TrustSection />
     </>

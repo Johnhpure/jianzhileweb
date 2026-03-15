@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   trailingSlash: false,
   poweredByHeader: false,
   images: {
-    formats: ["image/webp"],
+    formats: ["image/avif", "image/webp"],
   },
   headers: async () => [
     {

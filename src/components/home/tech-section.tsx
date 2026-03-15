@@ -1,8 +1,11 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Brain, GitBranch, RefreshCw, ShieldCheck } from "lucide-react";
-import { staggerContainer, fadeInUp, viewportConfig } from "@/lib/animations";
+import {
+  MotionWrapper,
+  MotionItem,
+  staggerContainer,
+  fadeInUp,
+  viewportConfig,
+} from "@/components/ui/motion-wrapper";
 
 const techPillars = [
   {
@@ -47,42 +50,22 @@ export function TechSection() {
   return (
     <section className="bg-white py-20 dark:bg-dark-bg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          variants={staggerContainer}
-        >
-          <motion.p
-            variants={fadeInUp}
-            className="text-center text-sm font-semibold uppercase tracking-widest text-primary dark:text-primary-light"
-          >
+        <MotionWrapper variants={staggerContainer} viewport={viewportConfig}>
+          <MotionItem as="p" variants={fadeInUp} className="text-center text-sm font-semibold uppercase tracking-widest text-primary dark:text-primary-light">
             技术实力
-          </motion.p>
-          <motion.h2
-            variants={fadeInUp}
-            className="mt-3 text-center text-3xl font-bold text-gray-900 dark:text-white"
-          >
+          </MotionItem>
+          <MotionItem as="h2" variants={fadeInUp} className="mt-3 text-center text-3xl font-bold text-gray-900 dark:text-white">
             不是简单的关键词匹配，是真正的语义理解
-          </motion.h2>
-          <motion.p
-            variants={fadeInUp}
-            className="mx-auto mt-4 max-w-2xl text-center text-gray-600 dark:text-slate-400"
-          >
-            简职了的 AI 引擎经过 800 万+ 真实招聘场景训练，能理解"3 年 Java
-            后端"与"熟悉 Spring 生态的中级工程师"是同一类人才
-          </motion.p>
-        </motion.div>
+          </MotionItem>
+          <MotionItem as="p" variants={fadeInUp} className="mx-auto mt-4 max-w-2xl text-center text-gray-600 dark:text-slate-400">
+            简职了的 AI 引擎经过 800 万+ 真实招聘场景训练，能理解&quot;3 年 Java
+            后端&quot;与&quot;熟悉 Spring 生态的中级工程师&quot;是同一类人才
+          </MotionItem>
+        </MotionWrapper>
 
-        <motion.div
-          className="mt-14 grid gap-6 sm:grid-cols-2"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-        >
+        <MotionWrapper className="mt-14 grid gap-6 sm:grid-cols-2" variants={staggerContainer} viewport={viewportConfig}>
           {techPillars.map((t) => (
-            <motion.div
+            <MotionItem
               key={t.title}
               variants={fadeInUp}
               className={`rounded-2xl border ${t.border} ${t.bg} p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md`}
@@ -97,9 +80,9 @@ export function TechSection() {
               <p className={`mt-4 text-xs font-semibold ${t.color}`}>
                 {t.detail}
               </p>
-            </motion.div>
+            </MotionItem>
           ))}
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );

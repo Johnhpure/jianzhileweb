@@ -15,18 +15,18 @@ export const metadata: Metadata = generatePageMetadata({
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-blue-50 to-white py-16">
+      <section className="bg-gradient-to-br from-blue-50 to-white py-16 dark:from-slate-900 dark:to-slate-900">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
             开始使用简职了
           </h1>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-600 dark:text-slate-400">
             填写以下信息，我们会在 1 个工作日内与您联系
           </p>
         </div>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-white py-16 dark:bg-slate-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-5">
             <div className="lg:col-span-3">
@@ -36,18 +36,18 @@ export default function ContactPage() {
             </div>
 
             <div className="lg:col-span-2">
-              <div className="rounded-2xl bg-gray-50 p-8">
-                <h3 className="text-lg font-bold text-gray-900">
+              <div className="rounded-2xl bg-gray-50 p-8 dark:bg-slate-800">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                   其他联系方式
                 </h3>
                 <div className="mt-6 space-y-5">
                   <div className="flex items-start gap-3">
                     <Mail className="mt-0.5 h-5 w-5 text-blue-600" />
                     <div>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">
                         商务邮箱
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-slate-400">
                         {siteConfig.company.email}
                       </p>
                     </div>

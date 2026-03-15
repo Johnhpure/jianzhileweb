@@ -1,7 +1,11 @@
 "use client";
 
+/**
+ * StatsSection 必须保留为客户端组件（使用 useState/useRef/IntersectionObserver）
+ * 但使用 LazyMotion + m 组件替代完整 motion，减少 bundle 体积
+ */
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "framer-motion";
 import { FileText, Target, Building2, Users } from "lucide-react";
 import { staggerContainer, fadeInUp, scaleIn, viewportConfig } from "@/lib/animations";
 
@@ -51,23 +55,25 @@ function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) 
 export function StatsSection() {
   return (
     <section className="bg-white py-16 dark:bg-dark-bg">
-      <motion.div
-        className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 sm:px-6 lg:grid-cols-4 lg:px-8"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportConfig}
-      >
-        {stats.map((stat) => (
-          <motion.div key={stat.label} className="text-center" variants={fadeInUp}>
-            <motion.div variants={scaleIn}>
-              <stat.icon className="mx-auto mb-3 h-8 w-8 text-primary-light dark:text-sky-400" />
-            </motion.div>
-            <AnimatedNumber target={stat.value} suffix={stat.suffix} />
-            <p className="mt-2 text-sm text-text-secondary dark:text-slate-400">{stat.label}</p>
-          </motion.div>
-        ))}
-      </motion.div>
+      <LazyMotion features={domAnimation}>
+        <m.div
+          className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 sm:px-6 lg:grid-cols-4 lg:px-8"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          {stats.map((stat) => (
+            <m.div key={stat.label} className="text-center" variants={fadeInUp}>
+              <m.div variants={scaleIn}>
+                <stat.icon className="mx-auto mb-3 h-8 w-8 text-primary-light dark:text-sky-400" />
+              </m.div>
+              <AnimatedNumber target={stat.value} suffix={stat.suffix} />
+              <p className="mt-2 text-sm text-text-secondary dark:text-slate-400">{stat.label}</p>
+            </m.div>
+          ))}
+        </m.div>
+      </LazyMotion>
     </section>
   );
 }

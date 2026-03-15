@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "简职了",
   nameEn: "JianZhiLe",
   description:
-    "AI 驱动的双端智能招聘平台——企业 HR 的智能筛选助手，求职者的精准投递神器",
+    "简职了是面向企业和求职者的智能招聘服务平台，帮助 HR 高效筛选候选人，帮助求职者精准匹配岗位",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ogImage: "/images/og-default.png",
 

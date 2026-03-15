@@ -1,56 +1,53 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { GraduationCap, Briefcase, Truck, Crown } from "lucide-react";
-import { staggerContainer, fadeInUp, viewportConfig } from "@/lib/animations";
+import Image from "next/image";
+import { CheckCircle } from "lucide-react";
+import {
+  MotionWrapper,
+  MotionItem,
+  staggerContainer,
+  fadeInUp,
+  viewportConfig,
+} from "@/components/ui/motion-wrapper";
 
 const scenarios = [
   {
-    icon: GraduationCap,
     tag: "校园招聘",
-    title: "秋招 12,000 份简历，3 天完成初筛",
+    title: "秋招万份简历，快速锁定优质候选人",
+    image: "/images/hr-dashboard-office.png",
     story:
-      "某头部互联网公司每年秋招收到超过 12,000 份校园简历。过去需要 8 名 HR 花费 3 周完成第一轮筛选，且因疲劳导致误判率高。使用简职了后，AI 在 72 小时内完成全部初筛，并根据岗位画像自动生成 Top 500 候选人短名单。",
-    result: "进入笔试的候选人质量从 35% 提升到 78%，HR 将精力聚焦在面试评估环节",
+      "每年秋招季，大量校园简历涌入，HR 团队的筛选压力巨大。简职了帮助企业在短时间内完成全量简历评估，自动按岗位需求排序候选人，让 HR 把精力聚焦在真正需要人工判断的面试环节。",
+    result: "筛选效率平均提升 10 倍以上",
     accent: "border-blue-200 dark:border-blue-800",
     tagBg: "bg-blue-100 text-blue-700 dark:bg-blue-900/60 dark:text-blue-300",
-    iconColor: "text-blue-600 dark:text-blue-400",
   },
   {
-    icon: Briefcase,
     tag: "社会招聘",
-    title: "15 个高级工程师岗位，3 周满编",
+    title: "技术岗精准匹配，缩短招聘周期",
+    image: "/images/case-manufacturing-hr.png",
     story:
-      "某制造业上市公司需要招聘 15 名自动化高级工程师，传统渠道投了 2 个月只到岗 4 人。接入简职了后，AI 从多个渠道汇集的 3,200 份简历中精准筛选出 87 名高匹配候选人，按技能契合度和稳定性指数排序。",
-    result: "3 周内 15 个岗位全部发出 Offer，较传统流程节省 68% 的招聘周期",
+      "技术类岗位的简历筛选门槛高，HR 很难准确评估候选人的技术水平。简职了通过多维度技能分析，帮助 HR 快速识别技术匹配度高的候选人，显著缩短了社招周期。",
+    result: "招聘周期平均缩短 60%",
     accent: "border-emerald-200 dark:border-emerald-800",
-    tagBg:
-      "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300",
-    iconColor: "text-emerald-600 dark:text-emerald-400",
+    tagBg: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300",
   },
   {
-    icon: Truck,
-    tag: "批量招聘",
-    title: "旺季补员 200+，从发布到到岗仅 5 天",
+    tag: "求职辅助",
+    title: "告别盲目海投，精准匹配理想岗位",
+    image: "/images/candidate-hired-success.png",
     story:
-      "某头部物流企业在双十一前需要紧急补充 200+ 名分拣员和配送员。简职了自动匹配仓库周边 10 公里内、有相关经验的候选人，并根据排班意愿和交通距离智能推荐。",
-    result: "首批 120 人在 48 小时内确认到岗，一周内全部 200+ 名额招满",
-    accent: "border-amber-200 dark:border-amber-800",
-    tagBg:
-      "bg-amber-100 text-amber-700 dark:bg-amber-900/60 dark:text-amber-300",
-    iconColor: "text-amber-600 dark:text-amber-400",
-  },
-  {
-    icon: Crown,
-    tag: "高端猎聘",
-    title: "CFO 候选人深度画像，决策周期缩短 60%",
-    story:
-      "某 Pre-IPO 企业招聘 CFO，需要从 40+ 份高管简历中找到兼具 IPO 经验、行业资源和文化契合度的人选。简职了对每位候选人生成包含过往业绩、行业影响力、管理风格在内的深度分析报告。",
-    result: "董事会评审效率提升 60%，最终入选者在试用期表现评分为团队最高",
+      "很多求职者面临信息过载的问题——招聘网站上相似岗位几百条，越看越迷茫。简职了帮助求职者分析自身优势和市场需求的匹配度，推荐真正适合的岗位方向。",
+    result: "投递回复率平均提升 5 倍",
     accent: "border-violet-200 dark:border-violet-800",
-    tagBg:
-      "bg-violet-100 text-violet-700 dark:bg-violet-900/60 dark:text-violet-300",
-    iconColor: "text-violet-600 dark:text-violet-400",
+    tagBg: "bg-violet-100 text-violet-700 dark:bg-violet-900/60 dark:text-violet-300",
+  },
+  {
+    tag: "批量招聘",
+    title: "旺季紧急补员，快速到岗",
+    image: "/images/case-enterprise-team.png",
+    story:
+      "物流、零售等行业在旺季需要短时间内大量补充一线员工。简职了帮助企业快速匹配周边可用人才，根据工作经验、时间意愿等条件筛选，缩短从发布到到岗的时间。",
+    result: "平均到岗时间缩短至 5 个工作日",
+    accent: "border-amber-200 dark:border-amber-800",
+    tagBg: "bg-amber-100 text-amber-700 dark:bg-amber-900/60 dark:text-amber-300",
   },
 ];
 
@@ -58,70 +55,70 @@ export function ScenariosSection() {
   return (
     <section className="bg-slate-50 py-20 dark:bg-slate-800/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          variants={staggerContainer}
-        >
-          <motion.p
+        <MotionWrapper variants={staggerContainer} viewport={viewportConfig}>
+          <MotionItem
+            as="p"
             variants={fadeInUp}
             className="text-center text-sm font-semibold uppercase tracking-widest text-primary dark:text-primary-light"
           >
-            真实场景
-          </motion.p>
-          <motion.h2
+            应用场景
+          </MotionItem>
+          <MotionItem
+            as="h2"
             variants={fadeInUp}
             className="mt-3 text-center text-3xl font-bold text-gray-900 dark:text-white"
           >
-            不同招聘场景，同一个解决方案
-          </motion.h2>
-          <motion.p
+            不同场景，同一个高效解决方案
+          </MotionItem>
+          <MotionItem
+            as="p"
             variants={fadeInUp}
             className="mx-auto mt-4 max-w-2xl text-center text-gray-600 dark:text-slate-400"
           >
-            无论是万人校招还是高管猎聘，简职了都能适配你的招聘节奏
-          </motion.p>
-        </motion.div>
+            无论是万人校招还是个人求职，简职了都能适配你的需求
+          </MotionItem>
+        </MotionWrapper>
 
-        <motion.div
+        <MotionWrapper
           className="mt-14 grid gap-6 lg:grid-cols-2"
           variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
           viewport={viewportConfig}
         >
           {scenarios.map((s) => (
-            <motion.div
+            <MotionItem
               key={s.title}
               variants={fadeInUp}
-              className={`rounded-2xl border ${s.accent} bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:bg-slate-800`}
+              className={`overflow-hidden rounded-2xl border ${s.accent} bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:bg-slate-800`}
             >
-              <div className="flex items-center gap-3">
-                <s.icon className={`h-6 w-6 ${s.iconColor}`} />
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-semibold ${s.tagBg}`}
-                >
+              {/* 场景配图 */}
+              <div className="relative h-44 overflow-hidden">
+                <Image
+                  src={s.image}
+                  alt={s.title}
+                  fill
+                  className="object-cover"
+                />
+                <span className={`absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-semibold ${s.tagBg}`}>
                   {s.tag}
                 </span>
               </div>
-              <h3 className="mt-4 text-lg font-bold text-gray-900 dark:text-white">
-                {s.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-slate-400">
-                {s.story}
-              </p>
-              <div className="mt-4 rounded-lg bg-slate-50 px-4 py-3 dark:bg-slate-700/50">
-                <p className="text-sm font-medium text-gray-800 dark:text-slate-200">
-                  <span className="mr-1 text-emerald-600 dark:text-emerald-400">
-                    &#10003;
-                  </span>
-                  {s.result}
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                  {s.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-slate-400">
+                  {s.story}
                 </p>
+                <div className="mt-4 flex items-center gap-2 rounded-lg bg-slate-50 px-4 py-3 dark:bg-slate-700/50">
+                  <CheckCircle className="h-4 w-4 shrink-0 text-emerald-500" />
+                  <p className="text-sm font-medium text-gray-800 dark:text-slate-200">
+                    {s.result}
+                  </p>
+                </div>
               </div>
-            </motion.div>
+            </MotionItem>
           ))}
-        </motion.div>
+        </MotionWrapper>
       </div>
     </section>
   );

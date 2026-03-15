@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { v4 as uuidv4 } from "uuid";
+import { randomUUID } from "crypto";
 import { leadSubmissionSchema, employerLeadSchema, candidateLeadSchema } from "@/lib/validation";
 import { createLead } from "@/lib/leads";
 import { checkRateLimit, checkHoneypot } from "@/lib/anti-spam";
 
 export async function POST(request: NextRequest) {
-  const requestId = uuidv4();
+  const requestId = randomUUID();
 
   try {
     const ip =
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
 
     if (!checkHoneypot(data.honeypot)) {
       return NextResponse.json(
-        { success: true, submissionId: uuidv4(), requestId },
+        { success: true, submissionId: randomUUID(), requestId },
         { status: 200 }
       );
     }
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const submissionId = uuidv4();
+    const submissionId = randomUUID();
 
     const result = await createLead({
       submissionId,

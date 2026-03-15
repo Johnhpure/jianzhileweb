@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
     Target,
@@ -21,30 +22,26 @@ const team = [
     {
         name: "张瑞",
         role: "CEO / 联合创始人",
-        bio: "曾任国内某头部招聘平台产品负责人，主导过日活千万级产品的从 0 到 1。在招聘行业深耕 11 年，经历了从传统纸质简历到在线招聘再到 AI 招聘的三次行业变革，深刻理解 HR 的真实痛点。",
-        initials: "张",
-        color: "bg-blue-600",
+        bio: "曾任国内某头部招聘平台产品负责人，主导过日活千万级产品的从 0 到 1。在招聘行业深耕 11 年，经历了从传统纸质简历到在线招聘再到智能招聘的三次行业变革，深刻理解 HR 的真实痛点。",
+        avatar: "/images/team-ceo.png",
     },
     {
         name: "李铭",
         role: "CTO / 联合创始人",
         bio: "NLP/CV 方向博士，前某一线互联网大厂算法团队 Tech Lead，带队完成过多个亿级数据量的 NLP 项目落地。在 ACL、EMNLP 等顶会发表论文 12 篇，持有简历解析相关技术专利 5 项。",
-        initials: "李",
-        color: "bg-emerald-600",
+        avatar: "/images/team-cto.png",
     },
     {
         name: "王一帆",
         role: "CPO / 产品副总裁",
-        bio: "9 年 HR SaaS 产品经验，曾主导某知名 ATS 产品从 0 到 5 万+ 企业客户的全过程。擅长将复杂的 AI 能力翻译为 HR 能理解的产品功能，坚信好产品应该让用户不需要看说明书。",
-        initials: "王",
-        color: "bg-violet-600",
+        bio: "9 年 HR SaaS 产品经验，曾主导某知名 ATS 产品从 0 到 5 万+ 企业客户的全过程。擅长将复杂的技术能力翻译为 HR 能理解的产品功能，坚信好产品应该让用户不需要看说明书。",
+        avatar: "/images/team-cpo.png",
     },
     {
         name: "陈思远",
         role: "VP of Engineering",
         bio: "15 年后端架构经验，前某云计算公司基础架构负责人。主导了简职了分布式简历处理引擎的设计，实现单集群每秒处理 2,000+ 份简历的解析吞吐量，系统可用性 99.97%。",
-        initials: "陈",
-        color: "bg-amber-600",
+        avatar: "/images/team-vpe.png",
     },
 ];
 
@@ -275,13 +272,13 @@ export function AboutContent() {
                                 variants={fadeInUp}
                                 className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600"
                             >
-                                <div
-                                    className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ${member.color}`}
-                                >
-                                    <span className="text-xl font-bold text-white">
-                                        {member.initials}
-                                    </span>
-                                </div>
+                                <Image
+                                    src={member.avatar}
+                                    alt={member.name}
+                                    width={64}
+                                    height={64}
+                                    className="mx-auto mb-4 h-16 w-16 rounded-full object-cover"
+                                />
                                 <h3 className="text-base font-bold text-gray-900 dark:text-white">
                                     {member.name}
                                 </h3>
