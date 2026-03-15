@@ -1,0 +1,320 @@
+@import "tailwindcss";
+
+/* ============================================================
+   简职了 (JianZhiLe) — Global Design System
+   Source of Truth: design-system/jianzhile/MASTER.md
+   ============================================================ */
+
+/* Enable class-based dark mode for Tailwind CSS 4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---- Tailwind CSS 4 Theme Tokens ---- */
+@theme {
+  /* ---------- Brand Colors ---------- */
+  --color-primary: #0369A1;
+  --color-primary-light: #0EA5E9;
+  --color-primary-dark: #075985;
+
+  /* B端 (企业HR) — 蓝色系 */
+  --color-employer: #2563EB;
+  --color-employer-dark: #1D4ED8;
+  --color-employer-light: #3B82F6;
+
+  /* C端 (求职者) — 绿色系 */
+  --color-candidate: #059669;
+  --color-candidate-dark: #047857;
+  --color-candidate-light: #10B981;
+
+  /* ---------- Semantic Colors ---------- */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+
+  /* ---------- Surface & Background ---------- */
+  --color-background: #F0F9FF;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F8FAFC;
+
+  /* ---------- Text ---------- */
+  --color-text: #0C4A6E;
+  --color-text-secondary: #64748B;
+  --color-text-muted: #94A3B8;
+
+  /* ---------- Border ---------- */
+  --color-border: #E2E8F0;
+  --color-border-light: #F1F5F9;
+
+  /* ---------- Dark Mode Surface ---------- */
+  --color-dark-bg: #0f172a;
+  --color-dark-surface: #1e293b;
+  --color-dark-surface-alt: #1a2332;
+  --color-dark-border: #334155;
+  --color-dark-border-light: #1e293b;
+
+  /* ---------- Typography ---------- */
+  --font-heading: var(--font-plus-jakarta), "Noto Sans SC", system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-inter), "Noto Sans SC", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-inter), "Noto Sans SC", system-ui, -apple-system, sans-serif;
+
+  /* ---------- Shadows ---------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(3, 105, 161, 0.15);
+  --shadow-glow-employer: 0 0 20px rgba(37, 99, 235, 0.15);
+  --shadow-glow-candidate: 0 0 20px rgba(5, 150, 105, 0.15);
+
+  /* ---------- Border Radius ---------- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+
+  /* ---------- Glassmorphism ---------- */
+  --glass-blur: 16px;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+
+  /* ---------- Animation ---------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+}
+
+/* ============================================================
+   Base Layer — Global resets and defaults
+   ============================================================ */
+@layer base {
+
+  /* Smooth scrolling (respect motion prefs) */
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  /* Body typography defaults */
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  /* Dark mode body */
+  html.dark body {
+    color: #e2e8f0;
+    background-color: var(--color-dark-bg);
+  }
+
+  /* Headings use heading font */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  html.dark h1,
+  html.dark h2,
+  html.dark h3,
+  html.dark h4,
+  html.dark h5,
+  html.dark h6 {
+    color: #f1f5f9;
+  }
+
+  /* Focus ring for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  html.dark :focus-visible {
+    outline-color: var(--color-primary-light);
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: rgba(3, 105, 161, 0.15);
+    color: var(--color-primary-dark);
+  }
+
+  html.dark ::selection {
+    background-color: rgba(14, 165, 233, 0.25);
+    color: #e0f2fe;
+  }
+}
+
+/* ============================================================
+   Utility Layer — Reusable design patterns
+   ============================================================ */
+@layer utilities {
+
+  /* ---------- Glassmorphism ---------- */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+  }
+
+  html.dark .glass {
+    background: rgba(30, 41, 59, 0.7);
+    border-color: rgba(100, 116, 139, 0.2);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow-md);
+  }
+
+  html.dark .glass-card {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(100, 116, 139, 0.2);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ---------- Text Gradients ---------- */
+  .text-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(135deg, var(--color-employer), var(--color-candidate));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ---------- Animated Background Blobs ---------- */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  html.dark .blob {
+    opacity: 0.08;
+  }
+
+  .blob-blue {
+    background: var(--color-employer);
+  }
+
+  .blob-green {
+    background: var(--color-candidate);
+  }
+
+  /* ---------- Section Pattern ---------- */
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .section-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* ---------- Transitions ---------- */
+  .transition-hover {
+    transition: all var(--duration-normal) ease;
+  }
+
+  .transition-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* ---------- Scrollbar ---------- */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 3px;
+  }
+
+  html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-dark-border);
+  }
+}
+
+/* ============================================================
+   Keyframe Animations
+   ============================================================ */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============================================================
+   Reduced Motion — Accessibility
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
