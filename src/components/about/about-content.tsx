@@ -20,19 +20,19 @@ import {
 
 const team = [
     {
-        name: "张瑞",
+        name: "王晨",
         role: "CEO / 联合创始人",
         bio: "曾任国内某头部招聘平台产品负责人，主导过日活千万级产品的从 0 到 1。在招聘行业深耕 11 年，经历了从传统纸质简历到在线招聘再到智能招聘的三次行业变革，深刻理解 HR 的真实痛点。",
         avatar: "/images/team-ceo.png",
     },
     {
-        name: "李铭",
+        name: "陈邦",
         role: "CTO / 联合创始人",
         bio: "NLP/CV 方向博士，前某一线互联网大厂算法团队 Tech Lead，带队完成过多个亿级数据量的 NLP 项目落地。在 ACL、EMNLP 等顶会发表论文 12 篇，持有简历解析相关技术专利 5 项。",
         avatar: "/images/team-cto.png",
     },
     {
-        name: "王一帆",
+        name: "敬若涵",
         role: "CPO / 产品副总裁",
         bio: "9 年 HR SaaS 产品经验，曾主导某知名 ATS 产品从 0 到 5 万+ 企业客户的全过程。擅长将复杂的技术能力翻译为 HR 能理解的产品功能，坚信好产品应该让用户不需要看说明书。",
         avatar: "/images/team-cpo.png",
