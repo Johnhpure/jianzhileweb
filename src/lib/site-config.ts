@@ -10,7 +10,7 @@ export const siteConfig = {
     name: "简职了科技有限公司",
     address: "（待填写）",
     email: "bd@jianzhile.com",
-    phone: "（待填写）",
+    phone: "010-85441168",
     icp: "（ICP 备案号待填写）",
     wechatQr: "/images/wechat-qr.png",
   },
